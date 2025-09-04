@@ -47,23 +47,23 @@ Follow the steps below to install dependencies.
 
 1. Install [bundler](http://bundler.io/) as follows:
 
-    ```sh-session
+    \`\`\`sh-session
     $ gem install bundler
-    ```
+    \`\`\`
 
 1. Next, install application dependencies:
 
-    ```sh-session
+    \`\`\`sh-session
     $ bundle install --binstubs
-    ```
+    \`\`\`
 
 ### Generate Documentation
 
 To generate the documentation, run the following command:
 
-```sh-session
+\`\`\`sh-session
 $ ./bin/jekyll build
-```
+\`\`\`
 
 ### Run the Application Server
 
@@ -76,9 +76,9 @@ To start and inspect your edits using Jekyll, follow the steps below:
 
 1. Run the *Jekyll* server:
 
-    ```sh-session
+    \`\`\`sh-session
     $ ./bin/jekyll serve
-    ```
+    \`\`\`
 
 1. Open [localhost:4000](http://localhost:4000/) in your browser.
 
@@ -89,9 +89,9 @@ via POST), Puma is necessary. To start and inspect your edits using Puma, follow
 
 1. Run the *Puma* server:
 
-    ```sh-session
+    \`\`\`sh-session
     $ ./bin/puma
-    ```
+    \`\`\`
 
 1. Open [localhost:9292](http://localhost:9292/) in your browser.
 
