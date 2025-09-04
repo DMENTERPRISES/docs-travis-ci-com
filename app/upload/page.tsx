@@ -8,22 +8,32 @@ export default function UploadPage() {
   const [file, setFile] = useState<File | null>(null)
   const [uploading, setUploading] = useState(false)
   const [uploadedUrl, setUploadedUrl] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!file) return
 
     setUploading(true)
+    setUploadedUrl(null)
+    setError(null)
+
     try {
-      const response = await fetch(`/api/upload?filename=${file.name}`, {
+      const response = await fetch(`/api/upload?filename=${encodeURIComponent(file.name)}`, {
         method: "POST",
         body: file,
       })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: "Unknown error" }))
+        throw new Error(errorData.error || `HTTP ${response.status}`)
+      }
 
       const blob = await response.json()
       setUploadedUrl(blob.url)
     } catch (error) {
       console.error("Error uploading file:", error)
+      setError(error instanceof Error ? error.message : "Unknown error occurred")
     } finally {
       setUploading(false)
     }
@@ -46,6 +56,12 @@ export default function UploadPage() {
           {uploading ? "Uploading..." : "Upload"}
         </button>
       </form>
+
+      {error && (
+        <div className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md">
+          <strong>Error:</strong> {error}
+        </div>
+      )}
 
       {uploadedUrl && (
         <div className="mt-6">
