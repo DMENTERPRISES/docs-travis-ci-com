@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 
 export default function UploadPage() {
@@ -51,7 +50,7 @@ export default function UploadPage() {
         <button
           type="submit"
           disabled={!file || uploading}
-          className="px-4 py-2 bg-black text-white rounded-md disabled:opacity-50"
+          className="px-4 py-2 bg-black text-white rounded-md disabled:opacity-50 hover:bg-gray-800"
         >
           {uploading ? "Uploading..." : "Upload"}
         </button>
@@ -67,7 +66,12 @@ export default function UploadPage() {
         <div className="mt-6">
           <h2 className="text-lg font-semibold mb-2">Uploaded File:</h2>
           <div className="p-4 bg-gray-100 rounded-md">
-            <a href={uploadedUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 break-all">
+            <a
+              href={uploadedUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 break-all hover:underline"
+            >
               {uploadedUrl}
             </a>
           </div>
